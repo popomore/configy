@@ -3,7 +3,7 @@ var configr = require('../lib/configr');
 
 describe('Configr', function() {
   it('should get correct properties', function() {
-    var parser = configr.file(process.cwd() + '/test/get.properties');
+    var parser = configr.file(process.cwd() + '/test/data/get.properties');
     parser.get('website').should.eql('http://en.wikipedia.org/');
     parser.get('language').should.eql('English');
     parser.get('Nodejs').should.eql('a platform built on Chrome\'s JavaScript runtime for easily building fast, scalable network applications.');
