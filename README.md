@@ -15,8 +15,8 @@ You can specify the type for configuration file.
 
 ```
 var file = configr.file('sample.properties', 'properties');
-file.param('name', 'popomore');
-file.param('name'); // => popomore
+file.set('name', 'popomore');
+file.get('name'); // => popomore
 ```
 
 Support types, properties by default 
@@ -26,7 +26,7 @@ Support types, properties by default
 - ymal
 
 ```
-configr.file('sample.txt', 'ini').param('user.name', 'popomore');
+configr.file('sample.txt', 'ini').set('user.name', 'popomore');
 ```
 
 And will output
