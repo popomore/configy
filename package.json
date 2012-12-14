@@ -9,6 +9,13 @@
     "type": "git",
     "url": "git://github.com/popomore/configr.git"
   },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
   "author": "popomore <sakura9515@gmail.com> (http://chuo.me/)",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  }
 }
