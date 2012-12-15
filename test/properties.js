@@ -1,4 +1,5 @@
 var should = require('should');
+var sinon = require('sinon');
 var fs = require('fs');
 var configr = require('../lib/configr');
 var baseDir = process.cwd();
@@ -43,6 +44,19 @@ describe('Configr', function() {
       fs.readFileSync(tmp).toString()
         .should.eql('form = e\\u000Ce\nkey\\ with\\ spaces = This is the value that could be looked up with the key "key with spaces".\nnew\\ line = e\\u000Ae\nnull = e\\u0000e\nreturn = e\\u000De\ntab = e\\u0009e\ntrim = need trim key and value\nvertical = e\\u000Be\nwebsite = http://en.wikipedia.org/\n');
       done();
+    }, 100);
+  });
+
+  it('should set properties async', function() {
+    var writeFile = sinon.spy(fs, 'writeFile');
+    tmp = baseDir + '/test/data/set.properties';
+    var parser = configr.file(tmp)
+      .set('a', 1)
+      .set('b', 1)
+      .set('c', 1);
+
+    setTimeout(function() {
+      expect(writeFile.calledOnce).should.be.true;
     }, 100);
   });
 });

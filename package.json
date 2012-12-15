@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "mocha": "*",
+    "sinon": "*",
     "should": "*"
   },
   "author": "popomore <sakura9515@gmail.com> (http://chuo.me/)",
