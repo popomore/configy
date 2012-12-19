@@ -1,13 +1,13 @@
 # Configr
 
-A configuration file parser supporting .properties, .ini, .ymal.
+A configuration file parser supporting properties, ini, ymal.
 
 ---
 
-You can get the property value Simply.
+You can get the property simply.
 
 ```
-configr.file('sample.properties').param('name');
+configr.file('sample.properties').get('name');
 // => value of the name key
 ```
 
@@ -23,15 +23,35 @@ Support types, properties by default
 
 - properties
 - ini
-- ymal
+- ymal(TODO)
+
+Ini support section, you can
 
 ```
 configr.file('sample.txt', 'ini').set('user.name', 'popomore');
 ```
 
-And will output
+And sample.txt will output
 
 ```
 [user]
 name = popomore
 ```
+
+## API
+
+### .file(file, type)
+
+Read file and return a parser. You can use getter/setter, it will sync the file.
+
+### .parse(str, type)
+
+You can parse string to json。
+
+```
+var data = fs.readFileSync('sample.properties');
+configr.parse(data.toString());
+```
+
+## LISENCE
+MIT
