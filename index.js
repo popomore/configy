@@ -1,1 +1,1 @@
-module.exports = require('./lib/configr');
+module.exports = require('./lib/configy');

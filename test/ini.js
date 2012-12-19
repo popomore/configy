@@ -1,10 +1,10 @@
 var should = require('should');
 var sinon = require('sinon');
 var fs = require('fs');
-var configr = require('../lib/configr');
+var configy = require('../lib/configy');
 var baseDir = process.cwd();
 
-describe('Configr', function() {
+describe('Configy', function() {
 
   var tmp;
 
@@ -15,7 +15,7 @@ describe('Configr', function() {
   });
 
   it('should get correct ini', function() {
-    var parser = configr.file(baseDir + '/test/data/get.ini');
+    var parser = configy.file(baseDir + '/test/data/get.ini');
     parser.get('a').should.eql('1');
     parser.get('section1.b').should.eql('1');
     parser.get('section1.c').should.eql('1');
@@ -25,7 +25,7 @@ describe('Configr', function() {
 
   it('should set correct ini', function(done) {
     tmp = baseDir + '/test/data/set.ini';
-    var parser = configr.file(tmp);
+    var parser = configy.file(tmp);
     parser
       .set('a', '1')
       .set('a.b', '1')

@@ -1,4 +1,4 @@
-# Configr
+# Configy
 
 A configuration file parser supporting properties, ini, ymal.
 
@@ -7,14 +7,14 @@ A configuration file parser supporting properties, ini, ymal.
 You can get the property simply.
 
 ```
-configr.file('sample.properties').get('name');
+configy.file('sample.properties').get('name');
 // => value of the name key
 ```
 
 You can specify the type for configuration file.
 
 ```
-var file = configr.file('sample.properties', 'properties');
+var file = configy.file('sample.properties', 'properties');
 file.set('name', 'popomore');
 file.get('name'); // => popomore
 ```
@@ -28,7 +28,7 @@ Support types, properties by default
 Ini support section, you can
 
 ```
-configr.file('sample.txt', 'ini').set('user.name', 'popomore');
+configy.file('sample.txt', 'ini').set('user.name', 'popomore');
 ```
 
 And sample.txt will output
@@ -50,8 +50,9 @@ You can parse string to json。
 
 ```
 var data = fs.readFileSync('sample.properties');
-configr.parse(data.toString());
+configy.parse(data.toString());
 ```
 
 ## LISENCE
-MIT
+
+MIT

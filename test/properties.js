@@ -1,10 +1,10 @@
 var should = require('should');
 var sinon = require('sinon');
 var fs = require('fs');
-var configr = require('../lib/configr');
+var configy = require('../lib/configy');
 var baseDir = process.cwd();
 
-describe('Configr', function() {
+describe('Configy', function() {
 
   var tmp;
 
@@ -15,7 +15,7 @@ describe('Configr', function() {
   });
 
   it('should get correct properties', function() {
-    var parser = configr.file(baseDir + '/test/data/get.properties');
+    var parser = configy.file(baseDir + '/test/data/get.properties');
     parser.get('website').should.eql('http://en.wikipedia.org/');
     parser.get('language').should.eql('English');
     parser.get('Nodejs').should.eql('a platform built on Chrome\'s JavaScript runtime for easily building fast, scalable network applications.');
@@ -27,7 +27,7 @@ describe('Configr', function() {
 
   it('should set correct properties', function(done) {
     tmp = baseDir + '/test/data/set.properties';
-    var parser = configr.file(tmp);
+    var parser = configy.file(tmp);
     parser
       .set('website', 'http://en.wikipedia.org/')
       .set('key with spaces', 'This is the value that could be looked up with the key "key with spaces".')
@@ -50,7 +50,7 @@ describe('Configr', function() {
   it('should set properties async', function() {
     var writeFile = sinon.spy(fs, 'writeFile');
     tmp = baseDir + '/test/data/set.properties';
-    var parser = configr.file(tmp)
+    var parser = configy.file(tmp)
       .set('a', 1)
       .set('b', 1)
       .set('c', 1);
