@@ -47,13 +47,30 @@ describe('Configy', function() {
     }, 100);
   });
 
+  it('should set object', function() {
+    tmp = baseDir + '/test/data/set.properties';
+    var parser = configy.file(tmp);
+    parser.set({
+      a: '1',
+      b: '2'
+    });
+
+    setTimeout(function() {
+      fs.existsSync(tmp).should.be.true;
+      fs.readFileSync(tmp).toString()
+        .should.eql('a = 1\nb = 2');
+      done();
+    }, 100);
+  });
+
   it('should set properties async', function() {
     var writeFile = sinon.spy(fs, 'writeFile');
     tmp = baseDir + '/test/data/set.properties';
     var parser = configy.file(tmp)
       .set('a', 1)
       .set('b', 1)
-      .set('c', 1);
+      .set('c', 1)
+      .set({d:1, e:1});
 
     setTimeout(function() {
       expect(writeFile.calledOnce).should.be.true;

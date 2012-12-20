@@ -36,6 +36,24 @@ describe('Configy', function() {
       fs.readFileSync(tmp).toString()
         .should.eql('a = 1\n[a]\nb = 1\n[b]\na = 1\n');
       done();
-    }, 100);
+    }, 200);
   });
+
+  it('should set object', function(done) {
+    tmp = baseDir + '/test/data/set.ini';
+    var parser = configy.file(tmp);
+    parser
+      .set({
+        'a': '1',
+        'a.b': '1' 
+      });
+
+    setTimeout(function() {
+      fs.existsSync(tmp).should.be.true;
+      fs.readFileSync(tmp).toString()
+        .should.eql('a = 1\n[a]\nb = 1\n');
+      done();
+    }, 200);
+  });
+
 });
