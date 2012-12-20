@@ -44,6 +44,10 @@ name = popomore
 
 Read file and return a parser. You can use getter/setter, it will sync the file.
 
+#### Event: complete
+
+Trigger after writing file 
+
 ### .parse(str, type)
 
 You can parse string to json。
@@ -52,6 +56,7 @@ You can parse string to json。
 var data = fs.readFileSync('sample.properties');
 configy.parse(data.toString());
 ```
+
 
 ## LISENCE
 

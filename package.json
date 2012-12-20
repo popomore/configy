@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git://github.com/popomore/configy.git"
   },
+  "dependencies": {
+    "arale": "*"
+  },
   "devDependencies": {
     "mocha": "*",
     "sinon": "*",

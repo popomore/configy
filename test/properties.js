@@ -47,7 +47,7 @@ describe('Configy', function() {
     }, 100);
   });
 
-  it('should set object', function() {
+  it('should set object', function(done) {
     tmp = baseDir + '/test/data/set.properties';
     var parser = configy.file(tmp);
     parser.set({
@@ -58,22 +58,40 @@ describe('Configy', function() {
     setTimeout(function() {
       fs.existsSync(tmp).should.be.true;
       fs.readFileSync(tmp).toString()
-        .should.eql('a = 1\nb = 2');
+        .should.eql('a = 1\nb = 2\n');
       done();
     }, 100);
   });
 
-  it('should set properties async', function() {
+  it('should call complete callback', function(done) {
+    tmp = baseDir + '/test/data/set.properties';
+    var parser = configy.file(tmp);
+    var spy = sinon.spy();
+    parser
+      .on('complete', spy)
+      .set({
+        a: '1',
+        b: '2'
+      });
+
+    setTimeout(function() {
+      spy.calledOnce.should.be.true;
+      done();
+    }, 100);
+  });
+
+  it('should set properties async', function(done) {
     var writeFile = sinon.spy(fs, 'writeFile');
     tmp = baseDir + '/test/data/set.properties';
     var parser = configy.file(tmp)
       .set('a', 1)
       .set('b', 1)
       .set('c', 1)
-      .set({d:1, e:1});
+      .set({d: 1, e: 1});
 
     setTimeout(function() {
-      expect(writeFile.calledOnce).should.be.true;
+      writeFile.calledOnce.should.be.true;
+      done();
     }, 100);
   });
 });
